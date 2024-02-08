@@ -1,0 +1,17 @@
+.notification {
+	position: relative;
+	margin-right: 4.5rem;
+	cursor: pointer;
+}
+
+.profile-wrapper {
+	opacity: 0;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.profile {
+	display: flex;
+	align-items: center;
+}

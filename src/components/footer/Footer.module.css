@@ -1,0 +1,27 @@
+.footer__top {
+  padding-top: 95px;
+  padding-bottom: 101px;
+  background-color: var(--bg-shade);
+}
+
+.top__container {
+  max-width: 1360px;
+  margin: var(--margin);
+  padding: var(--padding);
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.footer__info {
+  flex-basis: 401px;
+}
+
+.footer__logo {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--black);
+  margin-bottom: 31px;
+}

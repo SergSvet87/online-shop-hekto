@@ -1,10 +1,18 @@
-import "./App.css";
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import AppRoutes from './components/routes/Routes';
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-regular underline">Hello world!</h1>
-    </>
+    <div className="wrapper">
+      <Header />
+
+      <main className="page">
+        <AppRoutes />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 
