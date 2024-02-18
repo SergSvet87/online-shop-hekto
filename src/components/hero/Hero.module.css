@@ -15,7 +15,7 @@
   /* z-index: 2; */
 }
 
-.hero__container {
+.hero__slide {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +23,7 @@
 }
 
 .hero__content {
-  flex-basis: 644px;
+  flex: 0 0 55%;
 }
 
 .hero__subtitle {
@@ -60,9 +60,19 @@
 }
 
 .hero__img {
-  position: relative;
+  height: 689px;
+  flex: 1 0 auto;
 }
 
 .hero__img img {
-  position: relative;
+  width: 706px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -150px;
+  /* object-fit: cover; */
+}
+
+.swiper-pagination-bullet-active {
+
 }
