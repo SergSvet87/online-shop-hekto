@@ -1,12 +1,21 @@
-import { SetStateAction, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { SetStateAction, useEffect, useState } from 'react';
+import axios from 'axios';
 
-import { ROUTES } from '../../utils/constants.ts';
+// import Product from '../../assets/images/products/image_1167.png';
+
+import { BASE_URL } from '../../utils/constants.ts';
+// import { ICategory, ITab } from '../../types/products.ts';
+import Products from './Products.tsx';
 
 import styles from './Leatest.module.css';
 
 const Leatest = () => {
-  const [activeTab, setActiveTab] = useState('tab1');
+  const [categories, setData] = useState([]);
+  const [activeTab, setActiveTab] = useState('smartphones');
+
+  useEffect(() => {
+    axios.get(BASE_URL + `products/categories`).then((data) => setData(data.data));
+  }, [categories]);
 
   const handleTabClick = (tab: SetStateAction<string>) => {
     setActiveTab(tab);
@@ -19,227 +28,23 @@ const Leatest = () => {
 
         <div className={styles.leatest__inner_tabs}>
           <ul className={styles.leatest__tabs}>
-            <li
-              className={`${styles.tabs__item} ${activeTab === 'tab1' ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
-              data-tab="#new"
-              onClick={() => handleTabClick('tab1')}>
-              New Arrival
-            </li>
-            <li
-              className={`${styles.tabs__item} ${activeTab === 'tab2' ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
-              data-tab="#best"
-              onClick={() => handleTabClick('tab2')}>
-              Best Seller
-            </li>
-            <li
-              className={`${styles.tabs__item} ${activeTab === 'tab3' ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
-              data-tab="#featured"
-              onClick={() => handleTabClick('tab3')}>
-              Featured
-            </li>
-            <li
-              className={`${styles.tabs__item} ${activeTab === 'tab4' ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
-              data-tab="#special"
-              onClick={() => handleTabClick('tab4')}>
-              Special Offer
-            </li>
+            {categories.map((item) => (
+              <li
+                className={`${styles.tabs__item} ${activeTab === item ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
+                data-tab="#new"
+                key={item}
+                onClick={() => handleTabClick(item)}>
+                {item}
+              </li>
+            ))}
           </ul>
         </div>
 
-        {activeTab === 'tab1' && (
-          <ul className={styles.leatest__products}>
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        )}
-
-        {activeTab === 'tab2' && (
-          <ul className={styles.leatest__products}>
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        )}
-
-        {activeTab === 'tab3' && (
-          <ul className={styles.leatest__products}>
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-        )}
-
-        {activeTab === 'tab4' && (
-          <ul className={styles.leatest__products}>
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.products__item}>
-              <div className={styles.item__img}>
-                <img src="../../assets/images/products/image 1167.png" alt="" />
-              </div>
-              <div className={styles.item__text}>
-                <NavLink to={ROUTES.productId}>
-                  <h4 className={styles.title}>Comfort Handy Craft</h4>
-                </NavLink>
-                <div className={styles.price}>
-                  <p className={styles.price__new}>$42.00</p>
-                  <p className={styles.price__old}>$65.00</p>
-                </div>
-              </div>
-            </li>
-          </ul>
+        {categories.map(
+          (item) =>
+            activeTab === item && (
+              <Products category={item} key={item} />
+            )
         )}
       </div>
     </section>

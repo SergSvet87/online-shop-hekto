@@ -22,7 +22,7 @@ const Hero = () => {
           pagination={{
             clickable: true,
             renderBullet: function (index, className) {
-              return '<span class="' + className + '"><img class="pagination-bullet"/></span>';
+              return `<span class="${className} ${styles.pagination__bullet}"></span>`;
             },
           }}>
           <SwiperSlide className={styles.hero__slide}>

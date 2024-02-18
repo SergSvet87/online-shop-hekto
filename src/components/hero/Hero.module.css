@@ -73,6 +73,26 @@
   /* object-fit: cover; */
 }
 
-.swiper-pagination-bullet-active {
+/* .swiper-pagination-bullet > img {
+  content: url('../../assets/images/hero/bullet.png');
+}
 
+.swiper-pagination-bullet-active > img {
+  content: url('../../../assets/images/slider-pagination-active.png');
+} */
+
+.pagination__bullet {
+  display: inline-block;
+  width: 10px;
+  height: 9px;
+  margin: 0 6px !important;
+  border: 1px solid var(--accent);
+  transform: rotate(45deg);
+  background: transparent;
+  border-radius: 0;
+  opacity: 1;
+}
+
+.pagination__bullet:last-child {
+  margin-right: 0px;
 }
