@@ -1,11 +1,8 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
 
-// import Product from '../../assets/images/products/image_1167.png';
-
-import { BASE_URL } from '../../utils/constants.ts';
-// import { ICategory, ITab } from '../../types/products.ts';
-import Products from './Products.tsx';
+import { BASE_URL } from '../../utils/constants';
+import Products from './Products';
 
 import styles from './Leatest.module.css';
 
@@ -30,8 +27,8 @@ const Leatest = () => {
           <ul className={styles.leatest__tabs}>
             {categories.map((item) => (
               <li
-                className={`${styles.tabs__item} ${activeTab === item ? 'color: #fb2e86; text-decoration: underline' : 'color: #151875'}`}
-                data-tab="#new"
+                className={`${styles.tabs__item} ${activeTab === item ? styles.active : ''}`}
+                data-tab={item}
                 key={item}
                 onClick={() => handleTabClick(item)}>
                 {item}

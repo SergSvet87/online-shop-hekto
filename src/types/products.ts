@@ -3,7 +3,7 @@ export interface IProductsItem {
   name: string;
   title: string;
   price: number;
-  images: [];
+  images: [string];
 }
 
 export interface ITab {

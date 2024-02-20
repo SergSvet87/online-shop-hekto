@@ -4,7 +4,7 @@ export const ROUTES = {
   products: '/products',
   shop: '/shop',
   cart: '/cart',
-  category: '/categories/:id',
+  category: '/category/:name',
   productId: '/products/:id',
   search: '/products/:name',
   login: '/auth/login',

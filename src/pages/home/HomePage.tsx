@@ -1,10 +1,6 @@
-// import { useState, useEffect } from 'react';
-// import { NavLink } from 'react-router-dom';
-// import axios from 'axios';
 
-
-import Hero from '../../components/hero/Hero.tsx';
-import Leatest from '../../components/leatest/Leatest.tsx';
+import Hero from '../../components/hero/Hero';
+import Leatest from '../../components/leatest/Leatest';
 
 // import styles from './Home.module.css';
 
