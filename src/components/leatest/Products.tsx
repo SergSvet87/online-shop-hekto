@@ -1,83 +1,26 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
-import Sale from '../../assets/images/products/sale.png';
-import Search from '../../assets/images/products/search.svg';
-import Heart from '../../assets/images/products/heart.svg';
-import Cart from '../../assets/images/products/cart.svg';
+import { fetchCategory } from '../../utils/fetchCategories';
+import { ICategory, IProductsItem } from '../../types/products';
+import Product from './Product';
 
-import { BASE_URL, ROUTES } from '../../utils/constants';
-import { IProductsItem, ICategory } from '../../types/products';
+const Products: React.FC<ICategory> = ({ item }) => {
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: () => fetchCategory(item),
+    queryKey: ['category', item],
+    // options: {
+    //   keepPreviousData: true,
+    // },
+  });  
 
-import styles from './Leatest.module.css';
+  if (isLoading) <h3>Loading...</h3>;
 
-const Products = ({ category }: ICategory) => {
-  const [categoryItem, setDataItem] = useState([]);
-  const [isShow, setIsShow] = useState(false);
-  const [currentActive, setActive] = useState<IProductsItem | null>(null);
-
-  useEffect(() => {
-    axios
-      .get(BASE_URL + `products/category/${category}`)
-      .then((data) => setDataItem(data.data.products));
-  }, [category, categoryItem]);
-
-  const handleShow = (id: number) => {
-    categoryItem.filter((item: IProductsItem) => {
-      if (item.id === id) {
-        setActive(item);
-        setIsShow(true);
-      }
-    });
-  };
-
-  const handleHidden = () => {
-    setActive(null);
-    setIsShow(false);
-  };
+  if (!data) <h3>No data</h3>;
 
   return (
-    <ul className={styles.leatest__products}>
-      {categoryItem.map((item: IProductsItem) => (
-        <li className={styles.products__item} key={item.id}>
-          <div
-            className={`${styles.item__img} ${isShow && currentActive === item ? styles.item__img_show : ''}`}
-            onMouseEnter={() => handleShow(item.id)}
-            onMouseLeave={handleHidden}>
-            <img src={item.images[0]} alt={item.title} />
-
-            <div
-              className={`${styles.item__img_sale} ${isShow && currentActive === item ? styles.show : ''}`}>
-              <img className={styles.img__sale} src={Sale} alt="Sale" />
-
-              <div className={styles.item__img_icons}>
-                <div className={styles.img__wrapper}>
-                  <img src={Cart} alt="Cart" />
-                </div>
-
-                <div className={styles.img__wrapper}>
-                  <img src={Heart} alt="Heart" />
-                </div>
-
-                <div className={styles.img__wrapper}>
-                  <img src={Search} alt="Search" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.item__text}>
-            <NavLink to={ROUTES.productId}>
-              <h4 className={styles.title}>{item.title}</h4>
-            </NavLink>
-            <div className={styles.price}>
-              <p className={styles.price__new}>${item.price}</p>
-              {/* <p className={styles.price__old}>$65.00</p> */}
-            </div>
-          </div>
-        </li>
-      ))}
+    <ul className="grid grid-cols-3 gap-x-9 gap-y-28">
+      {isSuccess &&
+        data.products.map((item: IProductsItem) => <Product item={item} key={item.id} />)}
     </ul>
   );
 };

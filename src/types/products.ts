@@ -1,27 +1,30 @@
+export type Category = {
+  category: string | null;
+};
+
+export interface ICategory {
+  item: string;
+}
+
 export interface IProductsItem {
   id: number;
   name: string;
   title: string;
   price: number;
-  images: [string];
+  images: string[];
+}
+
+export interface IProducts {
+  item: {
+    id: number,
+    name: string,
+    title: string,
+    price: number,
+    images: string[],
+  }[];
 }
 
 export interface ITab {
   activeTab: string;
   onTabClick: (page: string) => void;
-}
-
-export interface ICategory {
-  category: [];
-}
-
-export interface IOrder {
-  id: number;
-  number: string;
-  date: string;
-  total: string;
-  status: string;
-  address: string;
-  recipient: string;
-  phone: string;
 }

@@ -1,48 +1,50 @@
-import { SetStateAction, useEffect, useState } from 'react';
-import axios from 'axios';
+import { SetStateAction, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { BASE_URL } from '../../utils/constants';
+import { fetchCategories } from '../../utils/fetchCategories';
 import Products from './Products';
-
-import styles from './Leatest.module.css';
+// import Categories from './Categories';
 
 const Leatest = () => {
-  const [categories, setData] = useState([]);
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: () => fetchCategories(),
+    queryKey: ['categories'],
+    // options: {
+    //   keepPreviousData: true,
+    // },
+  });
   const [activeTab, setActiveTab] = useState('smartphones');
-
-  useEffect(() => {
-    axios.get(BASE_URL + `products/categories`).then((data) => setData(data.data));
-  }, [categories]);
 
   const handleTabClick = (tab: SetStateAction<string>) => {
     setActiveTab(tab);
   };
 
-  return (
-    <section className={styles.leatest}>
-      <div className={`container ${styles.leatest__container}`}>
-        <h2 className={styles.leatest__title}>Leatest Products</h2>
+  if (isLoading) <h3>Loading...</h3>;
 
-        <div className={styles.leatest__inner_tabs}>
-          <ul className={styles.leatest__tabs}>
-            {categories.map((item) => (
-              <li
-                className={`${styles.tabs__item} ${activeTab === item ? styles.active : ''}`}
-                data-tab={item}
-                key={item}
-                onClick={() => handleTabClick(item)}>
-                {item}
-              </li>
-            ))}
+  if (!data) <h3>No data</h3>;
+
+  return (
+    <section className="pt-16 pb-14">
+      <div className="container">
+        <h2 className="font-second font-bold text-5xl text-center text-text">Leatest Products</h2>
+
+        <div className="min-w-40 mt-5 mb-12">
+          <ul className="flex justify-between items-center flex-wrap gap-12">
+            {isSuccess &&
+              data.map((category: string) => (
+                <li
+                  className={`font-main font-normal text-lg capitalize cursor-pointer hover:text-accent hover:underline transition-all duration-500 ease-in-out ${activeTab === category ? 'text-accent underline' : ''}`}
+                  data-tab={category}
+                  key={category}
+                  onClick={() => handleTabClick(category)}>
+                  {category}
+                </li>
+              ))}
           </ul>
         </div>
 
-        {categories.map(
-          (item) =>
-            activeTab === item && (
-              <Products category={item} key={item} />
-            )
-        )}
+        {isSuccess &&
+          data.map((item: string) => activeTab === item && <Products item={item} key={item} />)}
       </div>
     </section>
   );
