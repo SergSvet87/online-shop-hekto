@@ -1,5 +1,5 @@
 export type Category = {
-  category: string | null;
+  category: string | null,
 };
 
 export interface ICategory {
@@ -8,20 +8,17 @@ export interface ICategory {
 
 export interface IProductsItem {
   id: number;
+  title: string;
+  price: number;
+  image: string;
+}
+
+export interface IProducts {
+  id: number;
   name: string;
   title: string;
   price: number;
   images: string[];
-}
-
-export interface IProducts {
-  item: {
-    id: number,
-    name: string,
-    title: string,
-    price: number,
-    images: string[],
-  }[];
 }
 
 export interface ITab {

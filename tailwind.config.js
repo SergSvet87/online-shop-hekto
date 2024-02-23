@@ -28,6 +28,12 @@ export default {
         'sub-text-color': '#8a8fb9',
         'page-button-color': '#e0d3f5',
       },
+      height: {
+        'slider-img': '689px',
+      },
+      content: {
+        hero: 'url(/src/assets/images/hero/image-32.png)',
+      },
     },
   },
   plugins: [],
