@@ -51,8 +51,8 @@ const Slider = () => {
       {slides.map((slide) => (
         <SwiperSlide className="flex items-center justify-between gap-x-8" key={slide.id}>
           <div className="flex-1 basis-7/12">
-            <p className="title-h3 font-bold text-base leading-relaxed">{slide.subtitle}</p>
-            <h1 className="title-h1 mt-3 font-bold text-black tracking-wider">{slide.title}</h1>
+            <p className="title-h4 font-bold leading-relaxed">{slide.subtitle}</p>
+            <h1 className="mt-3 font-bold text-6xl text-black tracking-wider">{slide.title}</h1>
             <p className="font-main font-bold text-base text-sub-text-color mb-7 leading-relaxed">{slide.text}</p>
 
             <NavLink

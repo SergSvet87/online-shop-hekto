@@ -25,3 +25,16 @@ export interface ITab {
   activeTab: string;
   onTabClick: (page: string) => void;
 }
+
+export interface IOrder {
+  id: number;
+  title: string;
+  date: string;
+  total: string;
+  status: string;
+  color: string;
+  size: string;
+  price: number;
+  img: string;
+  quantity: number;
+}

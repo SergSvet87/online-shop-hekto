@@ -1,28 +1,18 @@
 import { NavLink } from 'react-router-dom';
 
-import { NAV, ROUTES } from '../../../utils/constants.ts';
-
-import styles from './Navigation.module.css';
+import { NAV, ROUTES } from '../../../utils/constants';
 
 const Navigation = () => {
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.nav__list}>
+    <nav>
+      <ul className="relative flex items-center gap-9">
         {NAV &&
           NAV.map((item, index) => (
-            <li className={styles.nav__item} key={index}>
+            <li className="text-base text-second transition-all hover:text-accent" key={index}>
               {item === 'home' ? (
-                <NavLink
-                  // className={({ isActive }) => (isActive ? styles.active : null)}
-                  to={ROUTES.home}>
-                  {item}
-                </NavLink>
+                <NavLink className='capitalize ' to={ROUTES.home}>{item}</NavLink>
               ) : (
-                <NavLink 
-                // className={({ isActive }) => (isActive ? styles.active : null)} 
-                to={item}>
-                  {item}
-                </NavLink>
+                <NavLink className='capitalize ' to={item}>{item}</NavLink>
               )}
             </li>
           ))}
