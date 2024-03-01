@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import Sofa from '../../assets/images/hero/sofa_promotional.png';
 import Svg from '../../assets/images/hero/stroke.svg';
 import { ROUTES } from '../../utils/constants';
-import { fetchCategories } from '../../utils/fetchCategories.ts';
+import { fetchCategories } from '../../utils/fetchProducts.ts';
 
 import 'swiper/css';
 import 'swiper/css/pagination';

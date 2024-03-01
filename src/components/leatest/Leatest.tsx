@@ -1,9 +1,9 @@
 import { SetStateAction, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchCategories } from '../../utils/fetchCategories';
+import { fetchCategories } from '../../utils/fetchProducts';
+import { Category } from '../../types/products';
 import Products from './Products';
-// import Categories from './Categories';
 
 const Leatest = () => {
   const { data, isLoading, isSuccess } = useQuery({
@@ -13,9 +13,9 @@ const Leatest = () => {
     //   keepPreviousData: true,
     // },
   });
-  const [activeTab, setActiveTab] = useState('smartphones');
+  const [activeTab, setActiveTab] = useState<Category>('smartphones');
 
-  const handleTabClick = (tab: SetStateAction<string>) => {
+  const handleTabClick = (tab: SetStateAction<Category>) => {
     setActiveTab(tab);
   };
 
@@ -31,7 +31,7 @@ const Leatest = () => {
         <div className="min-w-40 mt-5 mb-12">
           <ul className="flex justify-between items-center flex-wrap gap-12">
             {isSuccess &&
-              data.map((category: string) => (
+              data.map((category) => (
                 <li
                   className={`font-main font-normal text-lg capitalize cursor-pointer hover:text-accent hover:underline transition-all duration-500 ease-in-out ${activeTab === category ? 'text-accent underline' : ''}`}
                   data-tab={category}
@@ -44,7 +44,7 @@ const Leatest = () => {
         </div>
 
         {isSuccess &&
-          data.map((item: string) => activeTab === item && <Products item={item} key={item} />)}
+          data.map((category) => activeTab === category && <Products category={category} key={category} />)}
       </div>
     </section>
   );

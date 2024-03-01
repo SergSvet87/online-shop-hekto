@@ -1,4 +1,6 @@
-export const ROUTES = {
+import { Routes } from '../types/routes';
+
+export const ROUTES: Routes = {
   home: '/',
   pages: '/pages',
   products: '/products',

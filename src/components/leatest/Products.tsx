@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchCategory } from '../../utils/fetchCategories';
-import { ICategory, IProducts } from '../../types/products';
+import { fetchProductsByCategory } from '../../utils/fetchProducts';
+import { Category, ProductsItem } from '../../types/products';
 import Product from './Product';
 
-const Products: React.FC<ICategory> = ({ item }) => {
+type ProductProps = {
+  category: Category,
+}
+
+const Products: React.FC<ProductProps> = ({ category }) => {
   const { data, isLoading, isSuccess } = useQuery({
-    queryFn: () => fetchCategory(item),
-    queryKey: ['category', item],
+    queryFn: () => fetchProductsByCategory(category),
+    queryKey: ['category', category],
     // options: {
     //   keepPreviousData: true,
     // },
@@ -20,7 +24,7 @@ const Products: React.FC<ICategory> = ({ item }) => {
   return (
     <ul className="grid grid-cols-3 gap-x-9 gap-y-28">
       {isSuccess &&
-        data.products.map((item: IProducts) => (
+        data.products.map((item: ProductsItem) => (
           <Product
             id={item.id}
             image={item.images[0]}

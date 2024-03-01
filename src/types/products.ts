@@ -1,40 +1,57 @@
-export type Category = {
-  category: string | null,
+export type Category =
+  'smartphones'
+  | 'laptops'
+  | 'fragrances'
+  | 'skincare'
+  | 'groceries'
+  | 'home-decoration'
+  | 'furniture'
+  | 'tops'
+  | 'womens-dresses'
+  | 'womens-shoes'
+  | 'mens-shirts'
+  | 'mens-shoes'
+  | 'mens-watches'
+  | 'womens-watches'
+  | 'womens-bags'
+  | 'womens-jewellery'
+  | 'sunglasses'
+  | 'automotive'
+  | 'motorcycle'
+  | 'lighting';
+
+export type ProductsItem = {
+  id: number,
+  title: string,
+  description: string,
+  price: number,
+  discountPercentage: number,
+  rating: number,
+  stock: number,
+  brand: string,
+  category: string,
+  thumbnail: string,
+  images: string[],
 };
 
-export interface ICategory {
-  item: string;
-}
-
-export interface IProductsItem {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-}
-
-export interface IProducts {
-  id: number;
-  name: string;
-  title: string;
-  price: number;
-  images: string[];
-}
-
-export interface ITab {
-  activeTab: string;
-  onTabClick: (page: string) => void;
-}
+export type Products = {
+  products: ProductsItem[],
+  total: number,
+  skip: number,
+  limit: number,
+};
 
 export interface IOrder {
   id: number;
   title: string;
   date: string;
-  total: string;
+  total: number;
   status: string;
   color: string;
   size: string;
   price: number;
-  img: string;
+  discountPercentage: number,
+  discountedPrice: number,
+  thumbnail: string,
   quantity: number;
 }
