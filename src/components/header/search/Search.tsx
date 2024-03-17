@@ -1,9 +1,7 @@
 import { FocusEvent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ROUTES } from '../../../utils/constants.js';
-
-import styles from './Search.module.css';
+import { ROUTES } from '../../../utils/constants';
 
 const Search = () => {
   const [textSearch, setTextSearch] = useState('');
@@ -15,16 +13,17 @@ const Search = () => {
   }
 
   return (
-    <form className={styles.search}>
+    <form className="max-w-80 flex items-center justify-between border border-solid border-bg_shade">
       <input
         id="search"
+        className="bg-transparent text-second pt-2 pb-2 pl-5 pr-5"
         type="text"
         name="search"
         value={textSearch}
         onChange={(e) => setTextSearch(e.target.value)}
         onBlur={(e) => onSubmitHandler(e)}
       />
-      <NavLink className={styles.search__btn} to={ROUTES.search}>
+      <NavLink className="bg-current text-center p-2 hover:bg-pink" to={ROUTES.search}>
         <svg
           width="24"
           height="24"

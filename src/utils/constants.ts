@@ -1,10 +1,12 @@
-export const ROUTES = {
+import { Routes } from '../types/routes';
+
+export const ROUTES: Routes = {
   home: '/',
   pages: '/pages',
   products: '/products',
   shop: '/shop',
   cart: '/cart',
-  category: '/categories/:id',
+  category: '/category/:name',
   productId: '/products/:id',
   search: '/products/:name',
   login: '/auth/login',

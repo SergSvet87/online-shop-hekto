@@ -1,16 +1,13 @@
-// import { useState, useEffect } from 'react';
-// import { NavLink } from 'react-router-dom';
-// import axios from 'axios';
-
-
-import Hero from '../../components/hero/Hero.tsx';
-
-// import styles from './Home.module.css';
+import Hero from '../../components/hero/Hero';
+import Leatest from '../../components/leatest/Leatest';
+import Top from '../../components/top/Top';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
+      <Leatest />
+      <Top />
     </>
   );
 };
