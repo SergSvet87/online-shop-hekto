@@ -11,13 +11,17 @@ import Login from '../../pages/auth/login/Login';
 import Register from '../../pages/auth/register/Register';
 import Contact from '../../pages/contact/Contact';
 import Blog from '../../pages/blog/Blog';
+import Order from '../../pages/order/Order';
+import Completed from '../../pages/order-completed/Completed';
 
 const AppRoutes = () => (
   <Routes>
     <Route index element={<HomePage />} />
     <Route path={ROUTES.productId} element={<ProductPage />} />
     <Route path={ROUTES.cart} element={<Cart />} />
-    <Route path={ROUTES.shop} element={<Shop />} />
+    <Route path={ROUTES.shop} element={<Shop />} /> 
+    <Route path={ROUTES.order} element={<Order />} />
+    <Route path={ROUTES.completed} element={<Completed />} />
     <Route path={ROUTES.category} element={<Category />} />
     <Route path={ROUTES.login} element={<Login />} />
     <Route path={ROUTES.register} element={<Register />} />

@@ -11,6 +11,7 @@ export default {
         'bg-hero': '#f2f0ff',
         bg_product: '#f6f7fb',
         bg_shade: '#eeeffb',
+        'bg-form': '#f8f8fd',
         'bg-cart': '#f4f4fc',
         'grey-text': 'rgba(21, 24, 117, 0.1)',
         accent: '#fb2e86',
@@ -18,6 +19,7 @@ export default {
         white: '#fff',
         black: '#000',
         grey: '#c5cbe3',
+        gray: '#c1c8e1',
         purple: '#9f63b5',
         pink: '#fb2e86',
         violet: '#7e33e0',
@@ -37,6 +39,7 @@ export default {
       },
       width: {
         'order-product': '335px',
+        'completed-container': '625px',
       },
       content: {
         hero: 'url(/src/assets/images/hero/image-32.png)',

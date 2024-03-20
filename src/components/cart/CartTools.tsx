@@ -3,9 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../utils/constants';
 
-import CheckIcon from '../../assets/images/icons/check.svg';
+import CheckIcon from '../../assets/images/icons/check.svg?react';
 
-const CartTools = () => {
+type CartToolsProps = {
+  total: number,
+  totalProducts: number,
+};
+
+const CartTools: React.FC<CartToolsProps> = ({ total, totalProducts }) => {
   const [acceptWithRules, setAcceptWithRules] = useState(false);
 
   const toggleAcceptWithRules = () => setAcceptWithRules(() => !acceptWithRules);
@@ -13,18 +18,18 @@ const CartTools = () => {
   return (
     <aside className="flex flex-col">
       <div className="mb-8">
-        <h3 className="title-h3 mb-10 font-bold">Cart Totals</h3>
+        <h3 className="title-h3 mb-10 mt-3 font-bold">Cart Totals</h3>
 
         <div className="bg-bg-cart pt-8 pb-8 pr-6 pl-6 rounded-md">
           <div className="flex items-center justify-between mb-3">
-            <p>Subtotals:</p>
-            <p>£219.00</p>
+            <p>Total Products:</p>
+            <p>{totalProducts}</p>
           </div>
           <span className="line mb-8"></span>
 
           <div className="flex items-center justify-between mb-3">
             <p>Totals:</p>
-            <p>£325.00</p>
+            <p>£{total}</p>
           </div>
           <span className="block w-full h-px mb-6 border-t-2 border-solid border-grey"></span>
 
@@ -35,16 +40,14 @@ const CartTools = () => {
               onChange={toggleAcceptWithRules}
               name="type"
             />
-            <span className="">
-              {CheckIcon}
-            </span>
+            <span className=""><CheckIcon /></span>
             <span className="font-main font-normal text-xs text-grey">
               Shipping & taxes calculated at checkout
             </span>
           </label>
 
           <NavLink
-            to={ROUTES.shop}
+            to={ROUTES.order}
             className="w-full pt-3 pb-3 bg-green rounded-sm text-center text-white hover:bg-sky-blue">
             Proceed To Checkout
           </NavLink>
@@ -52,7 +55,7 @@ const CartTools = () => {
       </div>
 
       <div className="">
-        <h3 className="title-h3 mb-10 font-bold">Calculate Shopping</h3>
+        <h3 className="title-h3 mb-10 pt-3 font-bold">Calculate Shopping</h3>
 
         <div className="bg-bg-cart pt-8 pb-8 pr-6 pl-6 rounded-md">
           <label className="mb-3">
@@ -84,8 +87,8 @@ const CartTools = () => {
 
           <NavLink
             to={ROUTES.shop}
-            className="pt-3 pb-3 pr-6 pl-6 bg-accent rounded-sm font-second font-semibold text-base text-white hover:bg-purple">
-            Calculate Shiping
+            className="w-full pt-3 pb-3 bg-accent rounded-sm font-second font-semibold text-base text-center text-white hover:bg-purple">
+            Calculate Shopping
           </NavLink>
         </div>
       </div>
