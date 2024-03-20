@@ -44,7 +44,7 @@ const Leatest = () => {
         </div>
 
         {isSuccess &&
-          data.map((category) => activeTab === category && <Products category={category} key={category} />)}
+          data?.map((category) => activeTab === category && <Products category={category} key={category} />)}
       </div>
     </section>
   );

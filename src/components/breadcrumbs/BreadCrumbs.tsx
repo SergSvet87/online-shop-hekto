@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from '../../utils/constants';
 
-interface IBreadCrumbs {
+type BreadCrumbsProps = {
   [index: string]: string;
 }
 
-const BreadCrumbs: React.FC<IBreadCrumbs> = ({ home, page }) => {
+const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ home, page }) => {
   return (
     <div className="flex items-center font-main font-medium text-black">
       <NavLink className="hover:text-accent" to={ROUTES[home]}>
