@@ -70,9 +70,16 @@ body {
     @apply bg-accent;
   }
   .rowCell {
-    @apply text-center;
+    @apply text-center align-middle px-2 py-4;
   }
   .line {
     @apply block w-full h-px border-t-2 border-solid border-grey;
+  }
+
+  .labelUserForm {
+    @apply w-full flex mb-8 border-b-2 border-solid border-grey;
+  }
+  .inputUserForm {
+    @apply py-4 px-1 font-medium text-sm text-second placeholder:text-gray;
   }
 }

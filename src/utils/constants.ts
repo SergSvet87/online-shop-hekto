@@ -6,6 +6,8 @@ export const ROUTES: Routes = {
   products: '/products',
   shop: '/shop',
   cart: '/cart',
+  order: '/order',
+  completed: '/order/completed',
   category: '/category/:name',
   productId: '/products/:id',
   search: '/products/:name',

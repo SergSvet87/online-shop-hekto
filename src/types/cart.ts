@@ -9,7 +9,7 @@ export type ProductCart = {
   quantity: number,
 };
 
-export type Carts = [
+export type Cart = [
   {
     id: number,
     products: ProductCart[],
@@ -20,3 +20,22 @@ export type Carts = [
     totalQuantity: number,
   },
 ];
+
+export type Carts = [
+  {
+    carts: Cart[],
+    total: number,
+    skip: number,
+    limit: number,
+  },
+];
+
+export type addNewCart = {
+  id: number,
+  products: ProductCart[],
+  total: number,
+  discountedTotal: number,
+  userId: number,
+  totalProducts: number,
+  totalQuantity: number,
+};

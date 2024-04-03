@@ -1,74 +1,21 @@
-import { IOrder } from '../../types/products';
+import { useQuery } from '@tanstack/react-query';
+
+import { fetchProductsCart } from '../../utils/fetchCart';
 import BreadCrumbs from '../../components/breadcrumbs/BreadCrumbs';
 import Cart from '../../components/cart/Cart';
 import CartTools from '../../components/cart/CartTools';
 
-import Item1 from '../../assets/images/products/image_3.png';
-import Item2 from '../../assets/images/products/image_1173.png';
-import Item3 from '../../assets/images/products/image_1167.png';
-import Item4 from '../../assets/images/products/image_1168.png';
-
-const orders: IOrder[] = [
-  {
-    id: 1,
-    title: 'Ut diam consequat',
-    date: '07.12.2023',
-    total: 930,
-    status: 'Shipped',
-    color: 'Brown',
-    size: 'XL',
-    price: 32,
-    discountPercentage: 8,
-    discountedPrice: 5,
-    thumbnail: Item1,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    title: 'Vel faucibus posuere',
-    date: '08.12.2023',
-    total: 930,
-    status: 'Delivered',
-    color: 'Yellow',
-    size: 'XL',
-    price: 32,
-    discountPercentage: 8,
-    discountedPrice: 5,
-    thumbnail: Item2,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    title: 'Ac vitae vestibulum',
-    date: '21.10.2023',
-    total: 930,
-    status: 'Cancelled',
-    color: 'Black',
-    size: 'XL',
-    price: 32,
-    discountPercentage: 8,
-    discountedPrice: 5,
-    thumbnail: Item3,
-    quantity: 3,
-  },
-  {
-    id: 4,
-    title: 'Elit massa diam',
-    date: '01.09.2022',
-    total: 930,
-    status: 'Shipped',
-    color: 'White',
-    size: 'XL',
-    price: 32,
-    discountPercentage: 8,
-    discountedPrice: 5,
-    thumbnail: Item4,
-    quantity: 1,
-  },
-];
-
 const CartPage = () => {
-  // const [isModalOpen, setModalOpen] = useState(false);
+  const { data, isLoading, isSuccess, isError } = useQuery({
+    queryFn: () => fetchProductsCart(5),
+    queryKey: ['categories'],
+  });
+
+  if (isLoading) <h3>Loading...</h3>;
+
+  if (isError) {
+    console.error(`Something went wrong!`);
+  }
 
   return (
     <section>
@@ -79,12 +26,24 @@ const CartPage = () => {
         </div>
       </div>
 
-      <div className="container pt-32 pb-36 flex justify-between items-start gap-5 bg-white">
-        <Cart
-          orders={orders}
-        />
-        <CartTools />
-      </div>
+      {isError ? (
+        <h3 className="container pt-6 pb-6 flex justify-center items-center text-2xl text-black font-bold bg-white">Something went wrong!</h3>
+      ) : (
+        isSuccess && (
+          <div className="container pt-32 pb-36 flex justify-between items-start gap-5 bg-white">
+            {!data ? (
+              <h3 className="text-center">Cart Empty</h3>
+            ) : (
+              <Cart cartData={data.carts[0].products} />
+            )}
+            {!data ? (
+              <CartTools total={0} totalProducts={0} />
+            ) : (
+              <CartTools total={data.carts[0].total} totalProducts={data.carts[0].totalProducts} />
+            )}
+          </div>
+        )
+      )}
     </section>
   );
 };

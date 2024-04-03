@@ -24,7 +24,7 @@ const Products: React.FC<ProductProps> = ({ category }) => {
   return (
     <ul className="grid grid-cols-3 gap-x-9 gap-y-28">
       {isSuccess &&
-        data.products.map((item: ProductsItem) => (
+        data?.products.map((item: ProductsItem) => (
           <Product
             id={item.id}
             image={item.images[0]}

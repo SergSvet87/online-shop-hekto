@@ -1,8 +1,11 @@
+
 import BreadCrumbs from '../../components/breadcrumbs/BreadCrumbs';
-import Goods from '../../components/goods/Goods';
-import User from '../../components/user/User';
+import Goods from '../../components/order/goods/Goods';
+import User from '../../components/order/user/User';
 
 const Order = () => {
+  
+
   return (
     <section>
       <div className="bg-bg_product">
